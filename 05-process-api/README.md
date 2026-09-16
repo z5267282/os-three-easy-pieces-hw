@@ -25,8 +25,8 @@ non-deterministically.
 
 ## Aside
 
-An interesting side note about this question is the creation of the file. I 
-wanted to create a file say `/tmp/nums.txt` in the program through the use of 
+An interesting side note about this question is the creation of the file. I
+wanted to create a file say `/tmp/nums.txt` in the program through the use of
 `execlp` like this.
 
 ```c
@@ -66,3 +66,28 @@ To get the parent to run after the child without using `wait()` you need a
 spinlock with process-shared memory, signals or higher-order OS techniques.
 
 # Question 4
+
+See [q4.c](./q4.c).
+
+There are six variants of `exec` that can be broken down into two overarching
+categories. All `execl`-prefixed calls take in a variadic **l**ist of strings
+as arguments. Comparatively the `execv` take in an array (**v**ector) of
+arguments. We can list them out to see this clearly.
+
+The `p` refers to whether the `$PATH` Shell variable is used to find the
+location of the specific file. Note that if you put a leading `/`, `PATH`
+lookup behaviour is ignored.
+
+The `e` refers to whether the environment is passed in. The environment is a
+fixed-format array of strings.
+
+```txt
+VAR=value
+```
+
+Hence the exec family can be classified into the following table.
+
+| function | params | use `$PATH` | environment |
+| -------- | ------ | ----------- | ----------- |
+| `execl`  | list   | no          | inherit     |
+| `execle` | list   | no          | given       |
