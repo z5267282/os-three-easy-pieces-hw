@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-[ -d build ] && rm -r build;
-mkdir build
-for hw in [0-9][0-9]-*; do mkdir "./build/${hw}"; done
+# usage: ./compile.sh ??-${dir}/${file}.cpp
 
-gcc "${1}" -o "./build/${1%.c}"
+[ -d build ] || mkdir build
+
+dir="$(dirname "${1}")"
+file="$(basename "${1}")"
+
+gcc "${1}" -o "./build/${dir}-${file%.c}"

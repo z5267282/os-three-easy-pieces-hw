@@ -7,12 +7,11 @@ int main(void) {
 
   // child
   if (rc == 0) {
-    x = 95;
+    x = 100;
     printf("value in the child: %d\n", x);
   }
   // parent
   else {
-    x = 18;
     printf("value in the parent: %d\n", x);
   }
 
