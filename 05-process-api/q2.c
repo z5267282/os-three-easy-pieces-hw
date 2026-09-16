@@ -6,7 +6,8 @@
 
 int main(void) {
     // create temporary file
-    execlp("touch", "touch", "/tmp/nums.txt", (char*) NULL);
+    // use sytem so we don't replace the current process
+    system("touch /tmp/nums.txt");
 
     close(STDOUT_FILENO);
     int fd = open("/tmp/nums.txt", O_WRONLY);
